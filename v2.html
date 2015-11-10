@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script type="text/javascript"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+
+</style>
+</head>
+<body>
+		
+	<button type="button" id="button" onClick="FormCreate()" >Create Form</button>	
+	
+	<div class="row">
+		<div class="col-md-3">
+			<button type="button" id="button1" onClick="username()" >input name</button>
+		</div>
+		<div class="col-md-3">
+			<button type="button" id="button2" onClick="inputpassword()" >input password</button>
+		</div>
+		<div class="col-md-3">
+			<button type="button" id="button3" onClick="selectoption()" >Selectoption</button>
+		</div>
+		<div class="col-md-3">
+			<button type="button" id="button3" onClick="radiooption()" >radio</button>
+		</div>
+	</div>	
+</body>
+<script>
+	
+	function FormCreate(){
+		
+		var f = document.createElement("form");
+		f.setAttribute('method',"post");
+		f.setAttribute('action',"submit.php");
+		f.setAttribute('id',"myform");
+		
+		
+		
+
+		var s = document.createElement("input"); //input element, Submit button
+		s.setAttribute('type',"submit");
+		s.setAttribute('value',"Submit");
+		
+			
+
+		
+		f.appendChild(s);
+		document.getElementsByTagName('body')[0].appendChild(f);
+
+//and some more input elements here
+//and dont forget to add a submit button
+
+		
+	
+	}
+	$('#myform').submit(function() {
+	
+		a=document.getElementById("username");
+		
+		if(a){
+			var x = $("#username").val();
+			var t = $("#username").maxsize;
+			if(x.length > t){
+				alert("Limit Exceeded");}
+		
+		}
+	
+	
+	
+	
+	});
+	
+	function username() {
+	
+		var valid = prompt("Press 1 for Alphabetical,Any key for numerical","1");
+		var maxsize = prompt("Length of username","5");
+		var i = document.createElement("input"); //input element, text
+		if(valid.match("1")){
+		i.setAttribute('type',"text");}
+		else{
+		i.setAttribute('type',"number");
+		}
+		i.setAttribute('name',"username");
+		i.setAttribute('minlength',0);
+		i.setAttribute('maxlength',maxsize);
+		
+		i.setAttribute('id',"username");
+		var x = document.createElement("LABEL");
+		var t = document.createTextNode("Username");
+		x.setAttribute("for", "username");
+		x.appendChild(t);
+		
+		document.getElementById("myform").insertBefore(x,document.getElementById("username"));
+		document.getElementsByTagName('form')[0].appendChild(i);
+	
+	}
+	
+	function inputpassword() {
+		
+		var i = document.createElement("input"); //input element, text
+		var valid = prompt("Press 1 for Alphabetical,Any key for Numerical","1");
+		var maxsize = prompt("Length of password","5");
+		if(valid.match("1")){
+		i.setAttribute('type',"text");}
+		else{
+		i.setAttribute('type',"number");
+		}
+		
+		i.setAttribute('name',"password");
+		i.setAttribute('id',"password");
+		i.setAttribute('minlength',0);
+		i.setAttribute('maxlength',maxsize);
+		var x = document.createElement("LABEL");
+		var t = document.createTextNode("Password");
+		x.setAttribute("for", "password");
+		x.appendChild(t);
+		
+		document.getElementById("myform").insertBefore(x,document.getElementById("password"));
+		document.getElementsByTagName('form')[0].appendChild(i);
+	
+	}	
+	function selectoption() {
+		var valid = prompt("Do you want a select option field?","yes");
+		if(valid.match("yes")){
+		var i = document.createElement("select"); //input element, text
+		//i.setAttribute('type',"password");
+		//i.setAttribute('name',"password");
+		i.setAttribute('id',"optionselect");
+		var x1 = document.createElement("option");
+		var x2 = document.createElement("option");
+		var x3 = document.createElement("option");
+		var x4 = document.createElement("option");
+		//var t = document.createTextNode("Password");
+		
+		x1.text="car";
+		x2.text="plane";
+		x3.text="ship";
+		x4.text="train";
+		
+		i.add(x1);
+		i.add(x2);
+		i.add(x3);
+		i.add(x4);
+		
+		//document.getElementById("myform").insertBefore(x,document.getElementById("password"));
+		document.getElementsByTagName('form')[0].appendChild(i);}
+	
+	}	
+	
+	function radiooption(){
+		var valid = prompt("Do you want a radio field?","yes");
+		if(valid.match("yes")){
+		var i = document.createElement("input");
+		i.type="radio";
+		i.id="radio1";
+		i.value="yes";
+		i.name="yes";
+		var label = document.createElement("label");
+		label.appendChild(i);
+		label.appendChild(document.createTextNode("YES"));
+		document.getElementsByTagName('form')[0].appendChild(label);
+		
+		var ix = document.createElement("input");
+		ix.type="radio";
+		ix.id="radio1";
+		ix.value="yes";
+		ix.name="yes";
+		var label1 = document.createElement("label");
+		label1.appendChild(ix);
+		label1.appendChild(document.createTextNode("NO"));
+		document.getElementsByTagName('form')[0].appendChild(label1);}
+	
+	}
+		
+
+	</script>
+	
+</html>
